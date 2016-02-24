@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <script src="../bower_components/page/page.js"></script>
 <script>
-  window.addEventListener('WebComponentsReady', function() {
+    window.addEventListener('WebComponentsReady', function() {
 
     // We use Page.js for routing. This is a Micro
     // client-side router inspired by the Express router
@@ -57,6 +57,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/contact', function() {
       app.route = 'contact';
     });
+    
+    page('/books', function () {
+        app.route = 'books';
+    });
 
     // 404
     page('*', function() {
@@ -71,4 +75,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
   });
+
 </script>
