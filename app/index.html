@@ -54,6 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- Because this project uses vulcanize this should be your only html import
        in this file. All other imports should go in elements.html -->
     <link rel="import" href="elements/elements.html">
+    <link rel="import" href="bower_components/iron-icons/notification-icons.html">
 
     <!-- For shared styles, shared-styles.html import in elements.html -->
     <style is="custom-style" include="shared-styles"></style>
@@ -77,6 +78,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <a data-route="home" href="{{baseUrl}}">
                         <iron-icon icon="home"></iron-icon>
                         <span>Home</span>
+                    </a>
+                    
+                    <a data-route="trades" href="{{baseUrl}}trades">
+                        <iron-icon icon="notification:sync"></iron-icon>
+                        <span>Trades</span>
                     </a>
                     
                     <a data-route="old-home" href="{{baseUrl}}old-home">
@@ -131,18 +137,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <paper-material elevation="1">
                                 <h1>Make a trade. Improve your team.</h1>
                                 <p>
-                                    Making a trade is difficult.
+                                    Making a trade is hard.
                                 </p>
                                 <p>
-                                    Finding a trade that both teams agree is fair, and will benefit both teams, is a near impossible task.
+                                    No one trusts anyone. If someone offers me a trade, I automatically assume that they are trying to pull one over on me, and it's true!
+                                    I do it too. I'm either trying to sell high, or buy low. Essentially, I'm trying to trick someone into improving my team.
                                 </p>
                                 <p>
-                                    Everyone overvalues their own players, and undervalues the rest. This isn't because they are trying to be unfair. It is their
-                                    natural instinct. This effect is called the "Endowment effect". People will value something more, just because they own it.
+                                    Every trade has a winner, and a loser.
                                 </p>
                                 <p>
-                                    You can start to see a problem here.    
+                                    With Trade Maker, you can find trades that are fair, and that improve both teams. Trades where everyone is a winner!
                                 </p>
+                            </paper-material>
+                        </section>
+                        
+                        <section data-route="trades">
+                            <paper-material elevation="1">
+                                <p>Trades page. Trade Viewer goes here!</p>
                             </paper-material>
                         </section>
                         
