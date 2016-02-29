@@ -1,0 +1,46 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+
+<dom-module id="league-list-item">
+    <template>
+        <style>
+            /* local DOM styles go here */
+            paper-card {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+            
+            .title-text {
+                padding: 16px;
+                font-size: 24px;
+                margin: auto;
+            }
+            
+            paper-icon-button {
+                margin: auto;
+            }
+        </style>
+        <!-- local DOM goes here -->
+        <paper-card class="horizontal layout">
+            <div class="flex title-text">{{league.name}}</div>
+            <paper-icon-button icon="create" on-tap="_onEdit"></paper-icon-button>
+            <paper-icon-button icon="delete" on-tap="_onDelete"></paper-icon-button>
+        </paper-card>
+    </template>
+    <script>
+        Polymer({
+            is: 'league-list-item',
+            properties: {
+                league: Object
+            },
+            _onDelete: function() {
+                this.fire('delete-league', {league: this.league});
+            },
+            _onEdit: function() {
+                this.fire('edit-league', {league: this.league});
+            }          
+        });
+    </script>
+</dom-module>

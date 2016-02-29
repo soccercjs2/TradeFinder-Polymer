@@ -1,0 +1,41 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../league-list-item/league-list-item.html">
+
+<dom-module id="league-list-view">
+    <template>
+        <style>
+            /* local DOM styles go here */
+            paper-fab {
+                position: absolute;
+                right: 50px;
+                bottom: 50px;
+            }
+        </style>
+        <!-- local DOM goes here -->
+        <template class="vertical layout" is="dom-repeat" items="{{leagues}}" as="league">
+            <league-list-item league="{{league}}" on-delete-league="_onDelete"></league-list-item>
+        </template>
+        <paper-fab icon="add" on-tap="_onAdd"></paper-fab>
+    </template>
+    <script>
+        Polymer({
+            is: 'league-list-view',
+            properties: {
+                leagues: {
+                    type: Array,
+                    value: [ {name: "Guys' League"}, {name: "Reddit League"} ]
+                }
+            },
+            _onAdd: function() {
+                this.push('leagues', {name: "New League"});
+            },
+            _onDelete: function() {
+                this.pop('leagues');
+            }
+        });
+    </script>
+</dom-module>

@@ -54,7 +54,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!-- Because this project uses vulcanize this should be your only html import
        in this file. All other imports should go in elements.html -->
     <link rel="import" href="elements/elements.html">
-    <link rel="import" href="bower_components/iron-icons/notification-icons.html">
 
     <!-- For shared styles, shared-styles.html import in elements.html -->
     <style is="custom-style" include="shared-styles"></style>
@@ -95,7 +94,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <span>Contact</span>
                     </a>
                     
-                    <a data-route="old-home" href="{{baseUrl}}old-home">
+                    <!--<a data-route="old-home" href="{{baseUrl}}old-home">
                         <iron-icon icon="home"></iron-icon>
                         <span>Old Home</span>
                     </a>
@@ -108,31 +107,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <a data-route="books" href="/books">
                         <iron-icon icon="book"></iron-icon>
                         <span>Books</span>
-                    </a>
+                    </a>-->
                 </paper-menu>
             </paper-scroll-header-panel>
 
             <!-- Main Area -->
-            <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
+            <paper-scroll-header-panel main id="headerPanelMain">
                 <!-- Main Toolbar -->
-                <paper-toolbar id="mainToolbar" class="tall">
+                <paper-toolbar id="mainToolbar">
                     <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-
-                    <span class="space"></span>
-
-                    <!-- Toolbar icons -->
-                    <paper-icon-button icon="refresh"></paper-icon-button>
-                    <paper-icon-button icon="search"></paper-icon-button>
-
-                    <!-- Application name -->
-                    <div class="middle middle-container">
-                        <div class="app-name">Trade Maker</div>
-                    </div>
-
-                    <!-- Application sub title -->
-                    <div class="bottom bottom-container">
-                        <div class="bottom-title">Make a trade. Improve your team.</div>
-                    </div>
+                    <div>Trade Maker</div>
                 </paper-toolbar>
 
                 <!-- Main Content -->
@@ -158,9 +142,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </section>
                         
                         <section data-route="trades">
-                            <paper-material elevation="1">
-                                <p>Trades page. Trade Viewer goes here!</p>
-                            </paper-material>
+                            <league-list-view></league-list-view>
                         </section>
                         
                         <section data-route="about">
