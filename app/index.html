@@ -85,6 +85,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <span>Trades</span>
                     </a>
                     
+                    <a data-route="about" href="{{baseUrl}}about">
+                        <iron-icon icon="info"></iron-icon>
+                        <span>About</span>
+                    </a>
+                    
+                    <a data-route="contact" href="{{baseUrl}}contact">
+                        <iron-icon icon="mail"></iron-icon>
+                        <span>Contact</span>
+                    </a>
+                    
                     <a data-route="old-home" href="{{baseUrl}}old-home">
                         <iron-icon icon="home"></iron-icon>
                         <span>Old Home</span>
@@ -93,11 +103,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <a data-route="users" href="{{baseUrl}}users">
                         <iron-icon icon="info"></iron-icon>
                         <span>Users</span>
-                    </a>
-
-                    <a data-route="contact" href="{{baseUrl}}contact">
-                        <iron-icon icon="mail"></iron-icon>
-                        <span>Contact</span>
                     </a>
 
                     <a data-route="books" href="/books">
@@ -155,6 +160,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <section data-route="trades">
                             <paper-material elevation="1">
                                 <p>Trades page. Trade Viewer goes here!</p>
+                            </paper-material>
+                        </section>
+                        
+                        <section data-route="about">
+                            <paper-material elevation="1">
+                                <h2 class="page-title">About</h2>
+                                <p>This is the about section</p>
+                            </paper-material>
+                        </section>
+                        
+                        <section data-route="contact">
+                            <paper-material elevation="1">
+                                <h2 class="page-title">Contact</h2>
+                                <p>This is the contact section</p>
                             </paper-material>
                         </section>
                         
@@ -222,13 +241,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                             <paper-material elevation="1">
                                 <h2 class="page-title">User: {{params.name}}</h2>
                                 <div>This is {{params.name}}'s section</div>
-                            </paper-material>
-                        </section>
-
-                        <section data-route="contact">
-                            <paper-material elevation="1">
-                                <h2 class="page-title">Contact</h2>
-                                <p>This is the contact section</p>
                             </paper-material>
                         </section>
 
