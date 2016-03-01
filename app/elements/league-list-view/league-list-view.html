@@ -31,10 +31,10 @@
                 }
             },
             _onAdd: function() {
-                this.push('leagues', {name: "New League"});
+                this.push('leagues', {name: "New League" + Math.random()});
             },
-            _onDelete: function() {
-                this.pop('leagues');
+            _onDelete: function(e) {
+                this.arrayDelete('leagues', e.detail.league)
             }
         });
     </script>
