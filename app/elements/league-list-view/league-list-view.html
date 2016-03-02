@@ -4,6 +4,7 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../league-list-item/league-list-item.html">
+<link rel="import" href="../league-editor/league-editor.html">
 <link rel="import" href="../league-data/league-data.html">
 
 <dom-module id="league-list-view">
@@ -21,13 +22,18 @@
         <template class="vertical layout" is="dom-repeat" items="{{leagues}}" as="league">
             <league-list-item league="{{league}}" on-delete-league="_onDelete"></league-list-item>
         </template>
-        <paper-fab icon="add" on-tap="_onAdd"></paper-fab>
+        <paper-fab icon="add" on-tap="_onShowCreate"></paper-fab>
+        <league-editor id="league-creator" on-add-league="_onAdd"></league-editor>
     </template>
     <script>
         Polymer({
             is: 'league-list-view',
+            _onShowCreate: function() {
+                var editor = document.getElementById('league-creator');
+                editor.showEditor();
+            },
             _onAdd: function() {
-                this.push('leagues', {name: "New League" + Math.random()});
+                alert('asdf');
             },
             _onDelete: function(e) {
                 this.arrayDelete('leagues', e.detail.league)

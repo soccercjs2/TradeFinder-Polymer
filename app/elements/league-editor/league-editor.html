@@ -1,0 +1,41 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="league-editor">
+    <template>
+        <style>
+            /* local DOM styles go here */
+            
+        </style>
+        <!-- local DOM goes here -->
+        <paper-dialog id="dialog" modal class="vertical">
+            <h2>Create a League</h2>
+            <paper-input id="league-name" label="league name" no-label-float></paper-input>
+            <div class="buttons">
+                <paper-button dialog-dismiss>Cancel</paper-button>
+                <paper-button dialog-confirm on-tap="_accept">Accept</paper-button>
+            </div>
+        </paper-dialog>
+    </template>
+    <script>
+        Polymer({
+            is: 'league-editor',
+            properties: {
+                league: {
+                    type: Object,
+                    notify: true   
+                }
+            },
+            showEditor: function() {
+                this.$['dialog'].open();
+            },
+            _accept: function () {
+                if (this.$['league-name'].value) {
+                    this.fire('add-league', { name: this.$['league-name'].value });
+                }
+            }
+        });
+    </script>
+</dom-module>
