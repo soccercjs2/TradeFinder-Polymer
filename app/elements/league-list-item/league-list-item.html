@@ -33,7 +33,8 @@
         Polymer({
             is: 'league-list-item',
             properties: {
-                league: Object
+                league: Object,
+                notify: true
             },
             _onDelete: function() {
                 this.fire('delete-league', {league: this.league});

@@ -1,0 +1,18 @@
+<link rel="import" href="../../bower_components/firebase-element/firebase-collection.html">
+
+<dom-module id="league-data">
+    <template>
+        <firebase-collection data="{{leagues}}"
+            location="https://trade-finder.firebaseio.com"></firebase-collection>
+    </template>
+    <script>
+        Polymer({
+            is: 'league-data',
+            properties: {
+                leagues: {
+                    notify: true                    
+                }   
+            }
+        });
+    </script>
+</dom-module>

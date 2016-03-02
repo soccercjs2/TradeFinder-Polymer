@@ -4,6 +4,7 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../league-list-item/league-list-item.html">
+<link rel="import" href="../league-data/league-data.html">
 
 <dom-module id="league-list-view">
     <template>
@@ -16,6 +17,7 @@
             }
         </style>
         <!-- local DOM goes here -->
+        <league-data leagues="{{leagues}}"></league-data>
         <template class="vertical layout" is="dom-repeat" items="{{leagues}}" as="league">
             <league-list-item league="{{league}}" on-delete-league="_onDelete"></league-list-item>
         </template>
@@ -24,12 +26,6 @@
     <script>
         Polymer({
             is: 'league-list-view',
-            properties: {
-                leagues: {
-                    type: Array,
-                    value: [ {name: "Guys' League"}, {name: "Reddit League"} ]
-                }
-            },
             _onAdd: function() {
                 this.push('leagues', {name: "New League" + Math.random()});
             },
