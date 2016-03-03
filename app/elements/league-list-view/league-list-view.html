@@ -23,7 +23,7 @@
             <league-list-item league="{{league}}" on-delete-league="_onDelete"></league-list-item>
         </template>
         <paper-fab icon="add" on-tap="_onShowCreate"></paper-fab>
-        <league-editor id="league-creator" on-add-league="_onAdd" league="{{league}}"></league-editor>
+        <league-editor id="league-creator" on-add-league="_onAdd""></league-editor>
     </template>
     <script>
         Polymer({
@@ -32,8 +32,7 @@
                 this.$['league-creator'].showEditor();
             },
             _onAdd: function(e) {
-                alert(e.detail.name);
-                this.push('league', {name: e.detail.name});
+                this.push('leagues', {name: e.detail.name});
             },
             _onDelete: function(e) {
                 this.arrayDelete('leagues', e.detail.league)
