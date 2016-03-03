@@ -25,23 +25,31 @@
         <!-- local DOM goes here -->
         <paper-card class="horizontal layout">
             <div class="flex title-text">{{league.name}}</div>
-            <paper-icon-button icon="create" on-tap="_onEdit"></paper-icon-button>
+            <paper-icon-button icon="create" on-tap="_onShowEditor"></paper-icon-button>
             <paper-icon-button icon="delete" on-tap="_onDelete"></paper-icon-button>
         </paper-card>
+        <league-editor id="league-editor" on-add-league="_onAdd" league="[[league]]" mode="edit" on-save-league="_onEdit"></league-editor>
     </template>
     <script>
         Polymer({
             is: 'league-list-item',
             properties: {
-                league: Object,
-                notify: true
+                league: {
+                    type: Object,
+                    notify: true   
+                }
             },
             _onDelete: function() {
                 this.fire('delete-league', {league: this.league});
             },
-            _onEdit: function() {
-                this.fire('edit-league', {league: this.league});
-            }          
+            _onShowEditor: function() {
+                this.$['league-editor'].showEditor();
+            },
+            _onEdit: function(e) {
+                this.fire('edit-league', { league: e.detail.league });
+                //this.league = e.detail.league;
+                //this.fire('league-changed', {league: e.detail.league})
+            }
         });
     </script>
 </dom-module>

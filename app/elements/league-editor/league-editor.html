@@ -10,9 +10,9 @@
             
         </style>
         <!-- local DOM goes here -->
-        <paper-dialog id="dialog" modal class="vertical">
+        <paper-dialog id="dialog" class="vertical" modal stopKeyboardEventPropagation>
             <h2>Create a League</h2>
-            <paper-input id="league-name" label="league name" no-label-float></paper-input>
+            <paper-input id="league-name" label="league name" value="{{league.name}}" no-label-float></paper-input>
             <div class="buttons">
                 <paper-button dialog-dismiss>Cancel</paper-button>
                 <paper-button dialog-confirm on-tap="_accept">Accept</paper-button>
@@ -23,18 +23,25 @@
         Polymer({
             is: 'league-editor',
             properties: {
+                mode: {
+                    type: String
+                },
                 league: {
                     type: Object,
-                    notify: true   
+                    notify: true,
+                    value: { name: null }
                 }
             },
             showEditor: function() {
                 this.$['dialog'].open();
             },
             _accept: function () {
-                if (this.$['league-name'].value) {
-                    this.fire('add-league', { name: this.$['league-name'].value });
-                }
+                this.fire('save-league', { league: this.league });
+                // if (this.mode == "add") {
+                //     this.fire('add-league', { league: this.league });
+                // } else if (this.mode == "edit") {
+                //     this.fire('edit-league', { league: this.league });
+                // }
             }
         });
     </script>

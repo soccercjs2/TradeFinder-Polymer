@@ -20,10 +20,10 @@
         <!-- local DOM goes here -->
         <league-data leagues="{{leagues}}"></league-data>
         <template class="vertical layout" is="dom-repeat" items="{{leagues}}" as="league">
-            <league-list-item league="{{league}}" on-delete-league="_onDelete"></league-list-item>
+            <league-list-item league="{{league}}" on-edit-league="_onEdit" on-delete-league="_onDelete"></league-list-item>
         </template>
         <paper-fab icon="add" on-tap="_onShowCreate"></paper-fab>
-        <league-editor id="league-creator" on-add-league="_onAdd""></league-editor>
+        <league-editor id="league-creator" on-save-league="_onAdd" mode="add"></league-editor>
     </template>
     <script>
         Polymer({
@@ -32,7 +32,10 @@
                 this.$['league-creator'].showEditor();
             },
             _onAdd: function(e) {
-                this.push('leagues', {name: e.detail.name});
+                this.push('leagues', e.detail.league);
+            },
+            _onEdit: function(e) {
+                this.set("leagues.#" + (e.model.index + 1), e.detail.league)
             },
             _onDelete: function(e) {
                 this.arrayDelete('leagues', e.detail.league)
