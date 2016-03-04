@@ -5,7 +5,6 @@
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../league-list-item/league-list-item.html">
 <link rel="import" href="../league-editor/league-editor.html">
-<link rel="import" href="../league-data/league-data.html">
 
 <dom-module id="league-list-view">
     <template>
@@ -18,16 +17,21 @@
             }
         </style>
         <!-- local DOM goes here -->
-        <league-data leagues="{{leagues}}"></league-data>
         <template class="vertical layout" is="dom-repeat" items="{{leagues}}" as="league">
             <league-list-item league="{{league}}" on-edit-league="_onEdit" on-delete-league="_onDelete"></league-list-item>
         </template>
         <paper-fab icon="add" on-tap="_onShowCreate"></paper-fab>
-        <league-editor id="league-creator" on-save-league="_onAdd" mode="add"></league-editor>
+        <league-editor id="league-creator" on-save-league="_onAdd"></league-editor>
     </template>
     <script>
         Polymer({
             is: 'league-list-view',
+            properties: {
+                leagues: {
+                    type: Array,
+                    notify: true
+                }
+            },
             _onShowCreate: function() {
                 this.$['league-creator'].showEditor();
             },

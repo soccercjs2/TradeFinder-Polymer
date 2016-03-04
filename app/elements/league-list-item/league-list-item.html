@@ -36,7 +36,7 @@
             properties: {
                 league: {
                     type: Object,
-                    notify: true   
+                    notify: true
                 }
             },
             _onDelete: function() {
@@ -47,8 +47,6 @@
             },
             _onEdit: function(e) {
                 this.fire('edit-league', { league: e.detail.league });
-                //this.league = e.detail.league;
-                //this.fire('league-changed', {league: e.detail.league})
             }
         });
     </script>

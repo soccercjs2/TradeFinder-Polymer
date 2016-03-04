@@ -13,6 +13,7 @@
         <paper-dialog id="dialog" class="vertical" modal stopKeyboardEventPropagation>
             <h2>Create a League</h2>
             <paper-input id="league-name" label="league name" value="{{league.name}}" no-label-float></paper-input>
+            <paper-input id="league-url" label="league url" value="{{league.url}}" no-label-float></paper-input>
             <div class="buttons">
                 <paper-button dialog-dismiss>Cancel</paper-button>
                 <paper-button dialog-confirm on-tap="_accept">Accept</paper-button>
@@ -29,19 +30,16 @@
                 league: {
                     type: Object,
                     notify: true,
-                    value: { name: null }
+                    value: { name: null, url: null }
                 }
             },
             showEditor: function() {
                 this.$['dialog'].open();
+                this.$['league-name'].value = "";
+                this.$['league-url'].value = "";
             },
             _accept: function () {
                 this.fire('save-league', { league: this.league });
-                // if (this.mode == "add") {
-                //     this.fire('add-league', { league: this.league });
-                // } else if (this.mode == "edit") {
-                //     this.fire('edit-league', { league: this.league });
-                // }
             }
         });
     </script>

@@ -15,8 +15,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="Polymer Starter Kit">
-    <title>Polymer Starter Kit</title>
+    <meta name="generator" content="Trade Maker">
+    <title>Trade Maker</title>
 
     <!-- Place favicon.ico in the `app/` directory -->
 
@@ -62,6 +62,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body unresolved>
     <span id="browser-sync-binding"></span>
     <template is="dom-bind" id="app">
+        
+        <trade-maker-auth id="auth"
+               user="{{user}}"
+               location="[[firebaseURL]]">
+        </trade-maker-auth>
+
+        <trade-maker-data location="[[firebaseURL]]"
+                leagues="{{leagues}}"
+                user="{{user}}">
+        </trade-maker-data>
 
         <paper-drawer-panel id="paperDrawerPanel">
             <!-- Drawer Scroll Header Panel -->
@@ -93,21 +103,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <iron-icon icon="mail"></iron-icon>
                         <span>Contact</span>
                     </a>
-                    
-                    <!--<a data-route="old-home" href="{{baseUrl}}old-home">
-                        <iron-icon icon="home"></iron-icon>
-                        <span>Old Home</span>
-                    </a>
-
-                    <a data-route="users" href="{{baseUrl}}users">
-                        <iron-icon icon="info"></iron-icon>
-                        <span>Users</span>
-                    </a>
-
-                    <a data-route="books" href="/books">
-                        <iron-icon icon="book"></iron-icon>
-                        <span>Books</span>
-                    </a>-->
                 </paper-menu>
             </paper-scroll-header-panel>
 
@@ -142,7 +137,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </section>
                         
                         <section data-route="trades">
-                            <league-list-view></league-list-view>
+                            <league-list-view leagues="{{leagues}}"></league-list-view>
                         </section>
                         
                         <section data-route="about">
