@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-ripple/paper-ripple.html">
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
 
@@ -24,6 +25,7 @@
         </style>
         <!-- local DOM goes here -->
         <paper-card class="horizontal layout">
+            <paper-ripple></paper-ripple>
             <div class="flex title-text">{{league.name}}</div>
             <paper-icon-button icon="create" on-tap="_onShowEditor"></paper-icon-button>
             <paper-icon-button icon="delete" on-tap="_onDelete"></paper-icon-button>

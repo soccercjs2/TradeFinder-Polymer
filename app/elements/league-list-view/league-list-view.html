@@ -11,7 +11,7 @@
         <style>
             /* local DOM styles go here */
             paper-fab {
-                position: absolute;
+                position: fixed;
                 right: 50px;
                 bottom: 50px;
             }
@@ -33,6 +33,7 @@
                 }
             },
             _onShowCreate: function() {
+                this.$['league-creator'].clearFields();
                 this.$['league-creator'].showEditor();
             },
             _onAdd: function(e) {
