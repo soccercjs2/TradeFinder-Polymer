@@ -20,11 +20,12 @@
             <h2>Create a League</h2>
             <paper-input id="league-name" label="league name" value="{{league.name}}" no-label-float></paper-input>
             <paper-input id="league-url" label="league url" value="{{league.url}}" no-label-float></paper-input>
-            <paper-checkbox id="league-requires-login" checked="{{league.requires-login}}">requires login</paper-checkbox>
-            <template is="dom-if" if="{{league.requires-login}}">
-                <paper-input id="league-username" label="league username" value="{{league.username}}" no-label-float></paper-input>
-                <paper-input id="league-password" label="league password" value="{{league.password}}" no-label-float></paper-input>
-            </template>
+            <paper-checkbox id="league-requires-login" checked="{{league.requires-login}}">
+                requires login</paper-checkbox>
+            <paper-input id="league-username" label="league username" value="{{league.username}}" 
+                disabled="{{!league.requires-login}}" no-label-float></paper-input>
+            <paper-input id="league-password" label="league password" value="{{league.password}}" 
+                disabled="{{!league.requires-login}}" no-label-float></paper-input>
             <div class="buttons">
                 <paper-button dialog-dismiss>Cancel</paper-button>
                 <paper-button dialog-confirm on-tap="_accept">Accept</paper-button>
