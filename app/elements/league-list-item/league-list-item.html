@@ -25,7 +25,7 @@
         </style>
         <!-- local DOM goes here -->
         <paper-card class="horizontal layout">
-            <div class="flex title-text">
+            <div class="flex title-text" on-tap="_selectLeague">
                 <paper-ripple></paper-ripple>
                 {{league.name}}
             </div>
@@ -51,6 +51,9 @@
             },
             _onEdit: function(e) {
                 this.fire('edit-league', { league: e.detail.league });
+            },
+            _selectLeague: function(e) {
+                this.fire('select-league', { league: this.league });
             }
         });
     </script>

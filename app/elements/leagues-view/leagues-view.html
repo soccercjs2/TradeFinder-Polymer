@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../league-list-view/league-list-view.html">
+<link rel="import" href="../league-view/league-view.html">
+
+<dom-module id="leagues-view">
+    <template>
+        <!-- local DOM goes here -->
+        <excess-route route="/leagues/:leagueId" league-id="" active=""></excess-route>
+        
+        <iron-pages selected="" attr-for-selected="data-route">
+            <section data-route="leagues-list">
+                <league-list-view leagues="{{leagues}}" on-show-league="_selectLeague"></league-list-view>
+            </section>
+            
+            <section data-route="league">
+                <trades-view league="[[selectedLeague]]"></trades-view>
+            </section>
+        </iron-pages>
+    </template>
+    <script>
+        Polymer({
+            is: 'leagues-view',
+            properties: {
+                leagues: {
+                    type: Array,
+                    notify: true
+                }
+            },
+            ready: function() {
+                this.hasSelectedLeague = false;  
+            },
+            _selectLeague: function(e) {
+                this.hasSelectedLeague = true;
+                this.selectedLeague = e.detail.league;
+            }
+        });
+    </script>
+</dom-module>
