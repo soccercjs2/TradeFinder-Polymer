@@ -49,10 +49,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       app.route = 'leagues';
     });
     
-    page('/league', function() {
-      app.route = 'league';
-    });
-    
     page('/contact', function() {
       app.route = 'contact';
     });
@@ -68,9 +64,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/users', function() {
       app.route = 'users';
     });
-
-    page('/leagues/:leagueId', function(data) {
+    
+    page('/league', function() {
       app.route = 'league';
+    });
+    
+    page('/league/:name', function(data) {
+      app.route = 'user-info';
       app.params = data.params;
     });
     

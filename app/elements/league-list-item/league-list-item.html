@@ -52,8 +52,8 @@
             _onEdit: function(e) {
                 this.fire('edit-league', { league: e.detail.league });
             },
-            _selectLeague: function(e) {
-                this.fire('select-league', { league: this.league });
+            _selectLeague: function() {
+                page.show('/league/' + this.league.__firebaseKey__);
             }
         });
     </script>

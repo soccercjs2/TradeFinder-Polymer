@@ -7,17 +7,23 @@
             
         </style>
         <!-- local DOM goes here -->
-        asdf<br />
-        {{league.name}}
-        
+        {{leagueid}}
     </template>
     <script>
         Polymer({
             is: 'league-view',
             properties: {
-                league: {
-                    type: Object
+                leagueid: {
+                    type: String
+                },
+                leagues: {
+                    type: Array
                 }
+            },
+            start: function() {
+                alert('asdf');
+                // var selectedLeague = this.leagues.filter(__firebaseKey__ == this.leagueid);
+                // alert(JSON.stringify(selectedLeague));
             }
         });
     </script>

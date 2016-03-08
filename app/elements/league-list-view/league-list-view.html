@@ -19,7 +19,7 @@
         <!-- local DOM goes here -->
         <section id="league-list">
             <template class="vertical layout" is="dom-repeat" items="{{leagues}}" as="league">
-                <league-list-item league="{{league}}" on-edit-league="_onEdit" on-delete-league="_onDelete" on-select-league="_onSelect"></league-list-item>
+                <league-list-item league="{{league}}" on-edit-league="_onEdit" on-delete-league="_onDelete"></league-list-item>
             </template>
             <paper-fab icon="add" on-tap="_onShowCreate"></paper-fab>
             <league-editor id="league-creator" on-save-league="_onAdd"></league-editor>
@@ -47,9 +47,6 @@
             },
             _onDelete: function(e) {
                 this.arrayDelete('leagues', e.detail.league)
-            },
-            _onSelect: function(e) {
-                this.fire('show-league', { league: e.detail.league });                
             }
         });
     </script>

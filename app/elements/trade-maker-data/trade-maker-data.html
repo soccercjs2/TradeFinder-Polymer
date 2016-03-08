@@ -12,7 +12,7 @@
             properties: {
                 leagues: {
                     type: Array,
-                    notify: true             
+                    notify: true
                 },
                 user: {
                     observer: '_userChanged'
@@ -26,6 +26,11 @@
                 if (user) {
                     this.userLocation = [this.location, 'users', this.user.uid].join('/');
                     //this.userLocation = 'asdf';
+                }
+            },
+            _selectedChanged: function(leagues) {
+                if (leagues) {
+                    this.selectedLeague = leagues.filter( function(league){return league.selected;} );
                 }
             }
         });
