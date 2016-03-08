@@ -5,18 +5,13 @@
 
 <dom-module id="leagues-view">
     <template>
-        <!-- local DOM goes here -->
-        <excess-route route="/leagues/:leagueId" league-id="" active=""></excess-route>
+        <template is="dom-if" if="{{!hasSelectedLeague}}">
+            <league-list-view leagues="{{leagues}}" on-show-league="_selectLeague"></league-list-view>
+        </template>
         
-        <iron-pages selected="" attr-for-selected="data-route">
-            <section data-route="leagues-list">
-                <league-list-view leagues="{{leagues}}" on-show-league="_selectLeague"></league-list-view>
-            </section>
-            
-            <section data-route="league">
-                <trades-view league="[[selectedLeague]]"></trades-view>
-            </section>
-        </iron-pages>
+        <template is="dom-if" if="{{hasSelectedLeague}}">
+            <league-view league="[[selectedLeague]]"></league-view>
+        </template>
     </template>
     <script>
         Polymer({
@@ -24,6 +19,10 @@
             properties: {
                 leagues: {
                     type: Array,
+                    notify: true
+                },
+                selectedLeague: {
+                    type: Object,
                     notify: true
                 }
             },
