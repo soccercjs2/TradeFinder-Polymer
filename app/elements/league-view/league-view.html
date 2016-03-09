@@ -7,23 +7,64 @@
             
         </style>
         <!-- local DOM goes here -->
-        {{leagueid}}
+        {{league.name}}
     </template>
     <script>
         Polymer({
             is: 'league-view',
             properties: {
                 leagueid: {
-                    type: String
+                    type: String,
+                    notify: true
                 },
                 leagues: {
-                    type: Array
+                    type: Array,
+                    readonly: true
+                },
+                league: {
+                    type: String,
+                    notify: true,
+                    computed: '_getselectedleague(leagues, leagueid)'
                 }
             },
-            start: function() {
-                alert('asdf');
-                // var selectedLeague = this.leagues.filter(__firebaseKey__ == this.leagueid);
-                // alert(JSON.stringify(selectedLeague));
+            _getselectedleague: function(leagues, leagueid) {
+                var filteredLeagues = leagues.filter( function(league){return (league.__firebaseKey__ == leagueid);} );
+                var league;
+                
+                if (filteredLeagues) {
+                    if (filteredLeagues.length == 1) {
+                        league = filteredLeagues[0];
+                    }
+                }
+                
+                var request = require('request');
+                var cheerio = require('cheerio');
+//                 
+//                 alert('asdf');
+//                 
+//                 request.post({
+//                     uri: league.url,
+//                     headers: { 'content-type': 'application/x-www-form-urlencoded' },
+//                     body: require('querystring').stringify() //credentials
+//                 },
+//                 function(err, res, body){
+//                     if(err) {
+//                         callback.call(null, new Error('Login failed'));
+//                         return;
+//                     }
+// 
+//                     request(league.url, function(err, res, body) {
+//                         if(err) {
+//                             callback.call(null, new Error('Request failed'));
+//                             return;
+//                         }
+// 
+//                         return cheerio.load(body);
+//                         //var text = $('#element').text();
+//                     });
+//                 });
+
+                return league;
             }
         });
     </script>
