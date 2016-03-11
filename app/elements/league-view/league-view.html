@@ -9,21 +9,13 @@
             
         </style>
         <!-- local DOM goes here -->
-        <!--params='{"username":"{{league.username}}", "password":"{{league.password}}"}'-->
-        <!--body='{"username":"{{league.username}}", "password":"{{league.password}}"}'-->
         <iron-ajax
-            id="league-ajax"
-            method="POST"
-            url="http://www.fleaflicker.com/nfl/leagues/124676/teams/878935"
-            handle-as="text"
-            last-error="{{ajaxResponse.message}}"
-            on-response="handleResponse" verbose withCredentials></iron-ajax>
-        <!--<iron-request id="league-request"></iron-request>
-        <!--{{leagueAjax}}-->
-        <!--{{ajaxResponse}}-->
-        {{ajaxResponse}}
-        {{leagueFirebase.name}}
-        {{leagueFirebase.url}}
+            auto
+            url="http://gdata.youtube.com/feeds/api/videos/"
+            params='{"alt":"json", "q":"chrome"}'
+            handle-as="json"
+            on-response="handleResponse"
+            debounce-duration="300"></iron-ajax>
     </template>
     <script>
         Polymer({
@@ -37,16 +29,16 @@
                     type: Array,
                     readonly: true
                 },
-                leagueFirebase: {
-                    type: Object,
+                leagueUrl: {
+                    type: String,
                     notify: true,
                     computed: '_getFirebaseLeague(leagues, leagueid)'
                 },
-                leagueAjax: {
-                    type: Object,
+                leagueResponse: {
+                    type: String,
                     notify: true,
-                    computed: '_getAjaxLeague(leagueFirebase)'
-                }  
+                    computed: '_getResponseLeague(leagueUrl)'
+                }
             },
             _getFirebaseLeague: function(leagues, leagueid) {
                 var filteredLeagues = leagues.filter( function(league){return (league.__firebaseKey__ == leagueid);} );
@@ -58,14 +50,12 @@
                     }
                 }
 
-                return leagueFirebase;
+                return leagueFirebase.url;
             },
-            _getAjaxLeague: function(leagueFirebase) {
-                if (leagueFirebase) {
-                    this.$['league-ajax'].generateRequest();
-                }
+            _getResponseLeague(leagueUrl) {
+                // this.$['leagueAjax'].generateRequest();
             },
-            handleResponse: function(e) {
+            handleResponse: function(e, request) {
                 alert('asdf');
             }
         });
