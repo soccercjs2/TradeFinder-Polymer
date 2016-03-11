@@ -1,4 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-request.html">
 
 <dom-module id="league-view">
     <template>
@@ -7,7 +9,21 @@
             
         </style>
         <!-- local DOM goes here -->
-        {{league.name}}
+        <!--params='{"username":"{{league.username}}", "password":"{{league.password}}"}'-->
+        <!--body='{"username":"{{league.username}}", "password":"{{league.password}}"}'-->
+        <iron-ajax
+            id="league-ajax"
+            method="POST"
+            url="http://www.fleaflicker.com/nfl/leagues/124676/teams/878935"
+            handle-as="text"
+            last-error="{{ajaxResponse.message}}"
+            on-response="handleResponse" verbose></iron-ajax>
+        <!--<iron-request id="league-request"></iron-request>
+        <!--{{leagueAjax}}-->
+        <!--{{ajaxResponse}}-->
+        {{ajaxResponse}}
+        {{leagueFirebase.name}}
+        {{leagueFirebase.url}}
     </template>
     <script>
         Polymer({
@@ -21,50 +37,36 @@
                     type: Array,
                     readonly: true
                 },
-                league: {
-                    type: String,
+                leagueFirebase: {
+                    type: Object,
                     notify: true,
-                    computed: '_getselectedleague(leagues, leagueid)'
-                }
+                    computed: '_getFirebaseLeague(leagues, leagueid)'
+                },
+                leagueAjax: {
+                    type: Object,
+                    notify: true,
+                    computed: '_getAjaxLeague(leagueFirebase)'
+                }  
             },
-            _getselectedleague: function(leagues, leagueid) {
+            _getFirebaseLeague: function(leagues, leagueid) {
                 var filteredLeagues = leagues.filter( function(league){return (league.__firebaseKey__ == leagueid);} );
-                var league;
+                var leagueFirebase;
                 
                 if (filteredLeagues) {
                     if (filteredLeagues.length == 1) {
-                        league = filteredLeagues[0];
+                        leagueFirebase = filteredLeagues[0];
                     }
                 }
-                
-                var request = require('request');
-                var cheerio = require('cheerio');
-//                 
-//                 alert('asdf');
-//                 
-//                 request.post({
-//                     uri: league.url,
-//                     headers: { 'content-type': 'application/x-www-form-urlencoded' },
-//                     body: require('querystring').stringify() //credentials
-//                 },
-//                 function(err, res, body){
-//                     if(err) {
-//                         callback.call(null, new Error('Login failed'));
-//                         return;
-//                     }
-// 
-//                     request(league.url, function(err, res, body) {
-//                         if(err) {
-//                             callback.call(null, new Error('Request failed'));
-//                             return;
-//                         }
-// 
-//                         return cheerio.load(body);
-//                         //var text = $('#element').text();
-//                     });
-//                 });
 
-                return league;
+                return leagueFirebase;
+            },
+            _getAjaxLeague: function(leagueFirebase) {
+                if (leagueFirebase) {
+                    this.$['league-ajax'].generateRequest();
+                }
+            },
+            handleResponse: function(e) {
+                alert('asdf');
             }
         });
     </script>
