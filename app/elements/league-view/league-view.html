@@ -10,12 +10,18 @@
         </style>
         <!-- local DOM goes here -->
         <iron-ajax
-            auto
-            url="http://gdata.youtube.com/feeds/api/videos/"
-            params='{"alt":"json", "q":"chrome"}'
+            id="ajax"
+            url="../league-data.php"
+            params=""
             handle-as="json"
-            on-response="handleResponse"
-            debounce-duration="300"></iron-ajax>
+            on-response="hresponse"
+            method="GET"
+            last-response="{{helloworld}}"
+            debounce-duration="300">
+        </iron-ajax>
+        
+        {{helloworld}}
+        
     </template>
     <script>
         Polymer({
@@ -47,6 +53,8 @@
                 if (filteredLeagues) {
                     if (filteredLeagues.length == 1) {
                         leagueFirebase = filteredLeagues[0];
+                        
+                        this.$['ajax'].generateRequest();
                     }
                 }
 
@@ -55,8 +63,8 @@
             _getResponseLeague(leagueUrl) {
                 // this.$['leagueAjax'].generateRequest();
             },
-            handleResponse: function(e, request) {
-                alert('asdf');
+            hresponse: function(e) {
+                console.log(e.detail);
             }
         });
     </script>

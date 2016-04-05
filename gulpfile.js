@@ -125,6 +125,7 @@ gulp.task('images', function() {
 gulp.task('copy', function() {
   var app = gulp.src([
     'app/*',
+    'app/scripts/*',
     '!app/test',
     '!app/elements',
     '!app/bower_components',
